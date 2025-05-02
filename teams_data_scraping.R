@@ -17,7 +17,7 @@ remDr$navigate("https://www.playhq.com/afl")
 
 search_bar <- remDr$findElement(using = "id", "query")
 
-search_bar$sendKeysToElement(list("(SMFJL)", key = "enter"))
+search_bar$sendKeysToElement(list("(SMJFL)", key = "enter"))
 
 get_deets <- function(x) {
   c(
@@ -47,7 +47,8 @@ remDr$findElement(using = "xpath", '//*[@data-testid = "page-next"]')$clickEleme
 
 ## Filter out SMJFL itself
 club_list <- club_list %>%
-  filter(!str_detect(club, "Metro"))
+  filter(!str_detect(club, "Metro")) %>% 
+  filter(str_detect(club, "\\(SM[A-Z]{2}L\\)"))
 
 get_teams <- function(club, link) {
   
